@@ -1,9 +1,9 @@
 # Benjamin Chappell
 # Mimics the team_info class
-# TODO finish this file
 
 from constants import *
 from technology import Technology
+from team import Team
 
 class TeamInfo:
     def __init__(self, team, starting_loc, team_name) -> None:
@@ -11,11 +11,11 @@ class TeamInfo:
         self.resources = [100, 100, 100]
         self.team_name = team_name
         self.initial_location = starting_loc
-        self.opponent = team.get_opponent()
+        self.opponent = Team.get_opponent(team)
         self.tech_level = 0
         self.max_level_techs = 0
 
-        self.techs = [False for i in range(0, Technology.WHEEL)]
+        self.techs = [False for i in range(0, Technology.WHEEL + 1)]
     
     def get_team_name(self): return self.team_name
     def get_team(self): return self.team
@@ -48,7 +48,6 @@ class TeamInfo:
                 self.max_level_techs = 0
                 self.tech_level += 1
         
-        # TODO COmplete Technology Class
         if tech == Technology.SCHOOLS:
             self.tech_level = 3
 
